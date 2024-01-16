@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ProductList from "./ProductList";
-import "./Pagination/pagination.scss";
+import "../Pagination/pagination.scss";
 
 const API = "https://dummyjson.com/products";
 

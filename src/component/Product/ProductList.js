@@ -1,13 +1,13 @@
 import React, { useState, useMemo } from "react";
-import SingleProduct from "./SingleProduct";
-import Pagination from "./Pagination/Pagination";
-import "./Pagination/pagination.scss";
-import SaleEntryForm from "./SaleEntry/SaleEntryForm";
-import SaleEntryFormFunc from "./SaleEntry/SaleEntryFormFunc";
-import DailySalesReport from "./DailySalesReport";
+import SingleProduct from "../Product/SingleProduct";
+import Pagination from "../Pagination/Pagination";
+import "../Pagination/pagination.scss";
+import SaleEntryForm from "../SaleEntry/SaleEntryForm";
+import SaleEntryFormFunc from "../SaleEntry/SaleEntryFormFunc";
+import DailySalesReport from "../Report/DailySalesReport";
 
 // import EditProduct from './EditProduct'
-let PageSize = 2;
+let PageSize = 5;
 function ProductList({ productdata, onUpdateProduct }) {
   // state for conditional render of edit form
   const [isEditing, setIsEditing] = useState(false);
