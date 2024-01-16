@@ -1,24 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './component/Navbar';
+import ProductTable from './component/ProductTable';
+import UserDatafetch from './component/UserDatafetch';
+import SaleEntryForm from './component/SaleEntry/SaleEntryForm';
+import SaleEntryFormFunc from './component/SaleEntry/SaleEntryFormFunc';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar className="test"></Navbar>
+    <ProductTable></ProductTable>
+    {/* <UserDatafetch></UserDatafetch> */}
+    {/* <SaleEntryForm></SaleEntryForm> */}   
+   </>
   );
 }
 
