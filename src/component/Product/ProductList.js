@@ -44,8 +44,10 @@ function ProductList({ productdata, onUpdateProduct }) {
   function changeEditState(Product) {
     if (Product.id === editForm.id) {
       setIsEditing((isEditing) => !isEditing); // hides the form
+      setShowReport((showReport) => isEditing);
     } else if (isEditing === false) {
       setIsEditing((isEditing) => !isEditing); // shows the form
+      setShowReport((showReport) => isEditing);
     }
   }
 
@@ -59,8 +61,10 @@ function ProductList({ productdata, onUpdateProduct }) {
 function showReportdata(Product) {
   if (Product.id === editForm.id) {
     setShowReport((showReport) => !showReport); // hides the form
+    setIsEditing((isEditing) => showReport);
   } else if (showReport === false) {
     setShowReport((showReport) => !showReport); // shows the form
+    setIsEditing((isEditing) => showReport);
   }
  
 }
@@ -120,7 +124,7 @@ function showReportdata(Product) {
             onPageChange={(page) => setCurrentPage(page)}
           />
         ) : null}
-      </div>
+      </div>      
       {isEditing ? (
         <SaleEntryFormFunc
           editForm={editForm}
