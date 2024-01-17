@@ -1,9 +1,10 @@
 import React from 'react'
 
-function MsgBox ({msgText, Msgtype, Displaynone}) {   
+function MsgBox (props) {   
   return (
-    <div className={`alert alert-${Msgtype} ${Displaynone}`}  role="alert">     
-     {JSON.stringify(msgText)}
+    props.alert &&
+    <div className={`alert alert-${props.alert.Msgtype}`}  role="alert">     
+     {JSON.stringify(props.alert.msgText)}
     </div>
   )
 }

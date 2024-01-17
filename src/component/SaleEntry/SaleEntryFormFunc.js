@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import MsgBox from "../Utilities/MsgBox";
 
-function SaleEntryFormFunc({ editForm, handleProductUpdate, handleChange }) {
+
+function SaleEntryFormFunc({ editForm, handleProductUpdate, handleChange, ShowMsg }) {
   let { id, title } = editForm;
   //const [SalesSubmitted, setSalesSubmitted] = useState({});
   const [formData, setFormData] = useState({ Salesqty: "0", Salesdate: "" });
   const [startDate, setStartDate] = useState(new Date());
-  const [msgProps, setmsgProps] = useState({
-    msgText: "",
-    Msgtype: "success",
-    msgBoxDisplay: "visually-hidden",
-  });
+
 
   // Fetch data from local storage
   const getSalesdataFromLocalStorage = () => {
@@ -32,30 +28,18 @@ function SaleEntryFormFunc({ editForm, handleProductUpdate, handleChange }) {
     e.preventDefault();
 
     if (formData.Salesqty <= 0) {
-      setmsgProps({
-        msgText: "Sale Quantity cannot be less than One.",
-        Msgtype: "danger",
-        msgBoxDisplay: "visually",
-      });
+      ShowMsg("Sale Quantity cannot be less than one.", "danger");
       // alert("Sale Quantity cannot be less than Zero.");
       return;
     }
     if (startDate === null) {
-      setmsgProps({
-        msgText: "Sales Date is Invalid.",
-        Msgtype: "danger",
-        msgBoxDisplay: "visually",
-      });
+      ShowMsg("Sales Date is Invalid.", "danger");
       //alert("Sales Date is Invalid");
       return;
     }
     let dateObj = new Date(startDate);
     if (dateObj === "Invalid Date") {
-      setmsgProps({
-        msgText: "Sales Date is Invalid.",
-        Msgtype: "danger",
-        msgBoxDisplay: "visually",
-      });
+      ShowMsg("Sales Date is Invalid.", "danger");
       //alert("Sales Date is Invalid");
       return;
     }
@@ -88,7 +72,7 @@ function SaleEntryFormFunc({ editForm, handleProductUpdate, handleChange }) {
     //   .then((updatedProduct) => {
     //     handleProductUpdate(updatedProduct);
     //   });
-    alert("Data saved successfully.")
+    ShowMsg("Data saved successfully.", "success");
   }
 
   //   const handleChangeform = (event) => {
@@ -180,13 +164,7 @@ function SaleEntryFormFunc({ editForm, handleProductUpdate, handleChange }) {
               </div>
             </form>
             <br />
-            {msgProps.msgText.length > 0 ? (
-              <MsgBox
-                msgText={msgProps.msgText}
-                Msgtype={msgProps.Msgtype}
-                Displaynone={msgProps.msgBoxDisplay}
-              ></MsgBox>
-            ) : null}
+           
           </div>
         </div>
       </div>

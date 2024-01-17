@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 import SingleProduct from "../Product/SingleProduct";
 import Pagination from "../Pagination/Pagination";
 import "../Pagination/pagination.scss";
-import SaleEntryForm from "../SaleEntry/SaleEntryForm";
+import MsgBox from "../Utilities/MsgBox";
 import SaleEntryFormFunc from "../SaleEntry/SaleEntryFormFunc";
 import DailySalesReport from "../Report/DailySalesReport";
 
@@ -23,6 +23,18 @@ function ProductList({ productdata, onUpdateProduct }) {
     brand: "",
     category: "",
   });
+
+  const [msgProps, setmsgProps] = useState(null);
+
+  const ShowMsg = (msgText, Msgtype) => {
+    setmsgProps({
+      msgText: msgText,
+      Msgtype: Msgtype,
+    });
+    setTimeout(() => {
+      setmsgProps(null);
+    }, 2000);
+  };
   // console.log("test1")
   // console.log(productdata)
   // console.log("test2")
@@ -58,16 +70,15 @@ function ProductList({ productdata, onUpdateProduct }) {
     );
     setEditForm(filtered[0]);
   }
-function showReportdata(Product) {
-  if (Product.id === editForm.id) {
-    setShowReport((showReport) => !showReport); // hides the form
-    setIsEditing((isEditing) => showReport);
-  } else if (showReport === false) {
-    setShowReport((showReport) => !showReport); // shows the form
-    setIsEditing((isEditing) => showReport);
+  function showReportdata(Product) {
+    if (Product.id === editForm.id) {
+      setShowReport((showReport) => !showReport); // hides the form
+      setIsEditing((isEditing) => showReport);
+    } else if (showReport === false) {
+      setShowReport((showReport) => !showReport); // shows the form
+      setIsEditing((isEditing) => showReport);
+    }
   }
- 
-}
   const [currentPage, setCurrentPage] = useState(1);
 
   const currentTableData = useMemo(() => {
@@ -124,28 +135,29 @@ function showReportdata(Product) {
             onPageChange={(page) => setCurrentPage(page)}
           />
         ) : null}
-      </div>      
+      </div>
       {isEditing ? (
         <SaleEntryFormFunc
           editForm={editForm}
           handleChange={handleChange}
           handleProductUpdate={handleProductUpdate}
+          ShowMsg={ShowMsg}
         />
       ) : null}
 
-       {showReport ? (
+      {showReport ? (
         <DailySalesReport
-          Productforrpt = {editForm}     
-          handleChange={handleChange}    
+          Productforrpt={editForm}
+          handleChange={handleChange}
         />
       ) : null}
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <MsgBox alert={msgProps} />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
       <h4>Thank you for visiting</h4>
     </>
   );
