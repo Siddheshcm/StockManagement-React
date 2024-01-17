@@ -27,7 +27,7 @@ export default function DailySalesReport({ Productforrpt, handleChange }) {
       <div className="card-body">
         <h5 className="card-title">Daily Sales Data</h5>
         <h6 className="card-subtitle mb-2 text-body-secondary"></h6>
-        <p className="card-text">
+        <div className="card-text">
           <div className="container">
             {LoadReportData().length > 0 ? (
               <table className="table">
@@ -54,7 +54,7 @@ export default function DailySalesReport({ Productforrpt, handleChange }) {
               <h3>No Data found</h3>
             )}
           </div>
-        </p>
+        </div>
       </div>
     </div>
   );
